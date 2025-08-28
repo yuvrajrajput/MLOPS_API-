@@ -1,0 +1,5 @@
+# helm/ml-service/Chart.yaml
+apiVersion: v2
+name: ml-service
+description: A Helm chart for ML Service
+type: application

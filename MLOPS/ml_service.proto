@@ -1,0 +1,30 @@
+# ml_service.proto
+syntax = "proto3";
+
+package mlservice;
+
+service MLService {
+    rpc Predict(PredictRequest) returns (PredictResponse);
+    rpc BatchPredict(BatchPredictRequest) returns (BatchPredictResponse);
+    rpc GetModelInfo(ModelInfoRequest) returns (ModelInfoResponse);
+}
+
+message PredictRequest {
+    repeated float features = 1;
+    string model_version = 2;
+}
+
+message PredictResponse {
+    float prediction = 1;
+    float confidence = 2;
+    string model_version = 3;
+    int64 processing_time_ms = 4;
+}
+
+message BatchPredictRequest {
+    repeated PredictRequest requests = 1;
+}
+
+message BatchPredictResponse {
+    repeated PredictResponse responses = 1;
+}
